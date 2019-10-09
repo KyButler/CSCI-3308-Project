@@ -1,0 +1,95 @@
+
+* {
+    font-family: 'PT Sans';
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.5em;
+    color: white;
+    overflow:hidden; /*removes scroll bar, probably will need not hidden haha*/
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+
+}
+
+.row {
+    height: 100%;
+}
+
+.left {
+    text-align: center;
+    background-color: #272121;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.middle {
+    text-align: center;
+    background-color: white;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.right {
+    text-align: center;
+    background-color: #ff4d00;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.messages {
+    text-align: left;
+    background-color: white;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 90%;
+}
+
+.textEntry {
+    text-align: left;
+    background-color: #443737;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0;
+    width: 100%;
+    height: 10%;
+}
+
+.channelList {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 90%;
+}
+
+.userInfo {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 10%;
+    background-color:green;
+}
+
+.row.no-pad {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.row.no-pad > [class*='col-'] {
+    padding-right: 0;
+    padding-left: 0;
+}
