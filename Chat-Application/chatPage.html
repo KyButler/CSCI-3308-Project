@@ -2,8 +2,12 @@
 
 <html>
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="chatPage.css">
+    <title>Chat App</title>
+    <link rel="shortcut icon" href="images/lilyTransparent.png" />
+    <script src="chatPage.js"></script>
 </head>
 <body>
     <div class=".container-fluid" style="height:100%">
@@ -82,32 +86,15 @@
             </div>
             <div class="col-8">
                 <div class="messages">
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush" id="messageList">
                         <li class="list-group-item">
-                            <p style="color:white;">test</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p style="color:white;">test number 2</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p style="color:white;">dab</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p style="color:white;">test</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p style="color:white;">test number 2</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p style="color:white;">dab</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p style="color:white;">Sending messages really shouldn't be that hard! All that it looks like is that we append a new li item to this list, and it should act like a chat is expected to. I'm typing a super long message in order to test whether or not this will word wrap correctly!</p>
+                            Here's a hard-coded message!
                         </li>
                     </ul>
                 </div>
                 <div class="textEntry">
-                    <form style="padding-top:30px"> <!-- fix padding here for scaling purposes-->
+                    <form style="padding-top:30px">
+                        <!-- fix padding here for scaling purposes-->
                         <div class="form-group">
                             <input type="text" class="form-control" id="textEntryBox" autofocus="autofocus" placeholder="Enter message . . . ">
                         </div>
@@ -119,7 +106,7 @@
                     <table class="table">
                         <thead>
                             <tr><h1>Online Users</h1></tr>
-                        </thead>
+                        </thead> <!-- user list -->
                         <tbody style="text-align:left">
                             <tr>
                                 <td><img src="images/lilyTransparent.png" width="50px" height="50px" /># User 1</td>
@@ -187,7 +174,7 @@
                             <tr>
                                 <td><img src="images/lilyTransparent.png" width="50px" height="50px" /># User 4</td>
                             </tr>
-                        </tbody>
+                        </tbody> 
                     </table>
                 </div>
             </div>
