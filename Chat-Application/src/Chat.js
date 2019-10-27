@@ -1,25 +1,19 @@
-<!DOCTYPE html>
+import React, { useState } from 'react';
+import './Chat.css';
 
-<html>
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="chatPage.css">
-    <title>Chat App</title>
-    <link rel="shortcut icon" href="images/lilyTransparent.png" />
-    <script src="chatPage.js"></script>
-</head>
-<body>
-    <div class=".container-fluid" style="height:100%">
-        <div class="row no-pad">
-            <div class="col-2">
-                <div class="left">
-                    <div class="channelList">
-                        <table class="table">
+function Chat() {
+  const [messages, setMessages] = useState([]);
+  return (
+    <div className=".container-fluid" style={{height: '100%'}}>
+        <div className="row no-pad">
+            <div className="col-2">
+                <div className="left">
+                    <div className="channelList">
+                        <table className="table">
                             <thead>
                                 <tr><h1>Channels</h1></tr>
                             </thead>
-                            <tbody style="text-align:left">
+                            <tbody style={{textAlign:'left'}}>
                                 <tr>
                                     <td># Channel 1</td>
                                 </tr>
@@ -71,12 +65,12 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="userInfo">
-                        <div class="row no-pad">
-                            <div class="col-10">
+                    <div className="userInfo">
+                        <div className="row no-pad">
+                            <div className="col-10">
                                 <img src="images/lilyTransparent.png" width="50px" height="50px" />Username
                             </div>
-                            <div class="col-2">
+                            <div className="col-2">
                                 <div><img src="images/gearCog.png" width="40px" height="40px"/> </div>
                                 <div> </div>
                             </div>
@@ -84,30 +78,29 @@
                     </div>
                 </div>
             </div>
-            <div class="col-8">
-                <div class="messages">
-                    <ul class="list-group list-group-flush" id="messageList">
-                        <li class="list-group-item">
-                            Here's a hard-coded message!
-                        </li>
-                    </ul>
+            <div className="col-8">
+                <div className="messages">
+                  {messages.map((message, i) => (
+                    <li key={i} className="list-group-item">
+                      {message}
+                    </li>
+                  ))}
                 </div>
-                <div class="textEntry">
-                    <form style="padding-top:30px">
-                        <!-- fix padding here for scaling purposes-->
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="textEntryBox" autofocus="autofocus" placeholder="Enter message . . . ">
+                <div className="textEntry">
+                    <form style={{paddingTop:'30px'}}>
+                        <div className="form-group">
+                            <input type="text" className="form-control" id="textEntryBox" autofocus="autofocus" onKeyPress={e => {if (e.which == 13) {e.preventDefault(); setMessages([...messages, e.target.value]); e.target.value = ""}}} placeholder="Enter message . . . "/>
                         </div>
                     </form>
                 </div>
             </div>
-            <div class="col-2">
-                <div class="right">
-                    <table class="table">
+            <div className="col-2">
+                <div className="right">
+                    <table className="table">
                         <thead>
                             <tr><h1>Online Users</h1></tr>
-                        </thead> <!-- user list -->
-                        <tbody style="text-align:left">
+                        </thead>
+                        <tbody style={{textAlign:'left'}}>
                             <tr>
                                 <td><img src="images/lilyTransparent.png" width="50px" height="50px" /># User 1</td>
                             </tr>
@@ -174,12 +167,13 @@
                             <tr>
                                 <td><img src="images/lilyTransparent.png" width="50px" height="50px" /># User 4</td>
                             </tr>
-                        </tbody> 
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+  );
+}
 
-</body>
-</html>
+export default Chat;
