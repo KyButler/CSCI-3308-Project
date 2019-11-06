@@ -1,14 +1,15 @@
+
 import { LinkContainer } from "react-router-bootstrap";
 import React from "react";
 import Routes from "./Routes";
 import { Link } from "react-router-dom";
-import { Nav, Navbar, NavItem } from "react-bootstrap";
+import { Nav, Navbar } from "react-bootstrap";
 import "./App.css";
 
 function App(props) {
   return (
     <div className="App container">
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="light" >
           <Navbar.Brand>
             <Link to="/">ChatApp</Link>
           </Navbar.Brand>
