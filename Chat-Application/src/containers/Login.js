@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import "./Login.css";
+import "./Login.css"
+
 
 export default function Login(props) {
   const [username, setUsername] = useState("");
@@ -13,11 +14,24 @@ export default function Login(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    console.log("user clicked Login button");
+    const loggedInInfo = fetch('../api/auth', {
+      method: 'post',
+      headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+      },
+      body : JSON.stringify({
+	       "username":username,
+	        "password":password
+        })
+    })
+    console.log(loggedInInfo);
   }
 
   return (
     <div className="Login">
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <Form.Group controlId="username" bsSize="large">
           <Form.Label>Username</Form.Label>
           <Form.Control
@@ -38,7 +52,7 @@ export default function Login(props) {
         <Button block bsSize="large" disabled={!validateForm()} type="submit">
           Login
         </Button>
-      </form>
+      </Form>
     </div>
   );
 }
