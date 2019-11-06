@@ -41,7 +41,7 @@ JSON_LIMIT is again defined in .env, but makes it so a user can't insert text
 that's over 8mb (a bit much!). */
 app.use(require('body-parser').json({limit: process.env.JSON_LIMIT || '8mb'}));
 
-/* initializing passport */
+/* initializing passport to be used within auth.js*/
 app.use(passport.initialize());
 app.use(passport.session());
 

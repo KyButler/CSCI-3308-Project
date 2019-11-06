@@ -10,6 +10,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.VIRTUAL,
       set: function(password) {
         this.setDataValue('password', password);
+
+        /* bcrypt encrypts the password*/
         this.setDataValue('passwordHash', bcrypt.hashSync(password, 10));
       }
     },
@@ -23,6 +25,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {tableName: 'users'});
 
   User.prototype.passwordMatches = function(password) {
+
+    /* bcrypt takes a password and sees if it matches the passwordHash stored
+    within the users row in the db.*/
     return bcrypt.compareSync(password, this.passwordHash);
   };
 
