@@ -23,7 +23,7 @@ export default function Login(props) {
       },
       body : JSON.stringify({
 	       "username":username,
-	        "password":password
+	       "password":password
         })
     })
     console.log(loggedInInfo);
