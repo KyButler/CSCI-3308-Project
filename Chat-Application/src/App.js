@@ -1,6 +1,6 @@
 import { LinkContainer } from "react-router-bootstrap";
 import React, {useEffect, useState} from "react";
-import { Link, Switch, Route, useHistory } from "react-router-dom";
+import { Link, Switch, Redirect, Route, useHistory } from "react-router-dom";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import "./App.css";
 import Login from "./containers/Login";
@@ -82,10 +82,10 @@ function App(props) {
         </Navbar.Collapse>
       </Navbar>
       <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/login" exact render={props => <Login {...props} setUser={setUser}/>}/>
-        <Route path="/signup" exact component={Signup} />
-        <Route path="/chat" exact component={Chat} />
+        <Route path="/" exact render={props => <Home {...props} user={user}/>}/>
+        <Route path="/login" exact render={props => user ? <Redirect to="/chat"/> : <Login {...props} setUser={setUser}/>}/>
+        <Route path="/signup" exact render={props => user ? <Redirect to="/chat"/> : <Signup {...props} />} />
+        <Route path="/chat" exact render={props => user ? <Chat {...props}/> : <Redirect to="/login"/>} />
         <Route component={NotFound} />
       </Switch>
     </div>
