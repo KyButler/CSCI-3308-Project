@@ -1,9 +1,12 @@
 import { LinkContainer } from "react-router-bootstrap";
 import React from "react";
-import Routes from "./Routes";
-import { Link } from "react-router-dom";
+import { Link, Switch, Route } from "react-router-dom";
 import { Nav, Navbar } from "react-bootstrap";
 import "./App.css";
+import Login from "./containers/Login";
+import Home from "./containers/Home";
+import NotFound from "./containers/NotFound";
+import Signup from "./containers/Signup";
 
 function App(props) {
   return (
@@ -24,7 +27,12 @@ function App(props) {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Routes />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/signup" exact component={Signup} />
+        <Route component={NotFound} />
+      </Switch>
     </div>
   );
 }

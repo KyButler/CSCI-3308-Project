@@ -32,7 +32,7 @@ export default function Login(props) {
   return (
     <div className="Login">
       <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="username" bsSize="large">
+        <Form.Group controlId="username" bsSize="large" >
           <Form.Label>Username</Form.Label>
           <Form.Control
             autoFocus
