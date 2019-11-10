@@ -86,7 +86,7 @@ module.exports = {
     });
   },
 
-  /* on deletion . . .*/
+  /* on undo migration . . .*/
   down: (queryInterface, Sequelize) => {
 
     /* Simply drops the entire table users.*/
