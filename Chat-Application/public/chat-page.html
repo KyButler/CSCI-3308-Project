@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <title>Login Page</title>
+
+	<link rel='icon' href='../resources/img/favicon.ico' type='image/x-icon'/>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+      #header-name {
+        text-align: center;
+      }
+      #messages {
+        height: 500px;
+        overflow-y: scroll;
+      }
+    </style>
+  </head>
+  <body>
+    <!--Container-->
+    <div class="container-fluid">
+      <!--Row-->
+      <div class="row">
+
+        <!--Left-Hand Column-->
+        <div class="col-2">
+          <!--Channels-->
+          <div class="card">
+            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#channels">Channels</button>
+            <div id="channels" class="collapse">
+              <ul class="list-group">
+                <li class="list-group-item">John Doe</li>
+                <li class="list-group-item">Jane Doe</li>
+                <li class="list-group-item">Jimmy Doe</li>
+              </ul>
+            </div>
+          </div>
+          <!--End Channels-->
+          <!--Groups-->
+          <div class="card">
+          <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#groups">Groups</button>
+            <div id="groups" class="collapse">
+              <ul class="list-group">
+                <li class="list-group-item">Software Development</li>
+                <li class="list-group-item">Business Leaders</li>
+                <li class="list-group-item">Research Project</li>
+              </ul>
+            </div>
+          </div>
+          <!--End Groups-->
+        </div>
+        <!--End Left-Hand Column-->
+
+        <!--Middle Column-->
+        <div class="col-8">
+          <!--Chat-->
+          <div class="card">
+            <div class="card-header">
+              <h5 id="header-name">John Doe</h5>
+            </div>
+            <div id="messages" class="card-body">
+              <div class="overflow-auto">
+                <ul class="list-group">
+                  <li class="list-group-item">Hey!</li>
+                  <li class="list-group-item">Hi!</li>
+                  <li class="list-group-item">How are you?</li>
+                  <li class="list-group-item">Great!</li>
+                </ul>
+              </div>
+            </div>
+            <div class="card-footer">
+              <input type="text">
+            </div>
+          </div>
+          <!--End Chat-->
+        </div>
+        <!--End Middle Column-->
+
+        <!--Right Column-->
+        <div class="col-2">
+          <!--Online Status-->
+          <div class="card">
+            <ul class="list-group">
+              <li class="list-group-item">Carl Benny</li>
+              <li class="list-group-item">Benny Carl</li>
+              <li class="list-group-item">Joe Doe</li>
+              <li class="list-group-item">Doe John</li>
+            </ul>
+          </div>
+          <!--Online Status-->
+        </div>
+        <!--End Right Column-->
+
+      </div>
+      <!--End Row-->
+    </div>
+    <!--End Container-->
+
+	</body>
+<html>
