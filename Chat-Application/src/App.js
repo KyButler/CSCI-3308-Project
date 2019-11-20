@@ -53,7 +53,7 @@ function App(props) {
 
   return userChecked ? (
     <div className="App">
-      <Navbar bg="light" >
+          <Navbar className="navbar navbar-dark bg-dark">
           <Navbar.Brand>
             <Link to="/">ChatApp</Link>
           </Navbar.Brand>
