@@ -49,6 +49,7 @@ app.use(passport.session());
 that if the browser attempts to make a call to the URL /api/auth, the auth.js
 code will run (more can be seen in ./routes/api/auth.js) */
 app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/users', require('./routes/api/users'));
 
 /* Places the port at the defined PORT in .env, or instead defaults to 7217.
 This port can probably be from 1->9999 given nothing else is running on that
