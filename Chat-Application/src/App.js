@@ -1,5 +1,5 @@
 import { LinkContainer } from "react-router-bootstrap";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Component } from "react";
 import { Link, Switch, Redirect, Route, useHistory } from "react-router-dom";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import "./App.css";
@@ -12,7 +12,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-regular-svg-icons'
 
 function App(props) {
-
     const [user, setUser] = useState(null);
     const [userChecked, setUserChecked] = useState(false);
 

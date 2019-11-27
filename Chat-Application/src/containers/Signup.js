@@ -53,7 +53,6 @@ export default function Signup(props) {
                 <Form.Group controlId="DisplayName">
                     <Form.Label>Display Name</Form.Label>
                     <Form.Control
-                        autoFocus
                         type="text"
                         value={displayname}
                         onChange={e => setDisplayname(e.target.value)}
