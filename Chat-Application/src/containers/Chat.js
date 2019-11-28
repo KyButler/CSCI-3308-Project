@@ -13,9 +13,6 @@ export default function Chat(props) {
                         <button type="button" className="btn btn-primary" data-toggle="collapse" data-target="#channels">Channels</button>
                         <div id="channels" className="collapse">
                             <ul id="channels-list" className="list-group">
-                                <li className="list-group-item">John Doe</li>
-                                <li className="list-group-item">Jane Doe</li>
-                                <li className="list-group-item">Jimmy Doe</li>
                             </ul>
                         </div>
                     </div>
@@ -23,9 +20,6 @@ export default function Chat(props) {
                         <button type="button" className="btn btn-primary" data-toggle="collapse" data-target="#groups">Groups</button>
                         <div id="groups" className="collapse">
                             <ul id="groups-list" className="list-group">
-                                <li className="list-group-item">Software Development</li>
-                                <li className="list-group-item">Business Leaders</li>
-                                <li className="list-group-item">Research Project</li>
                             </ul>
                         </div>
                     </div>
@@ -38,10 +32,6 @@ export default function Chat(props) {
                         <div id="messages" className="card-body">
                             <div className="overflow-auto">
                                 <ul id="messages-list" className="list-group">
-                                    <li className="list-group-item">Hey!</li>
-                                    <li className="list-group-item">Hi!</li>
-                                    <li className="list-group-item">How are you?</li>
-                                    <li className="list-group-item">Great!</li>
                                 </ul>
                             </div>
                         </div>
@@ -53,10 +43,6 @@ export default function Chat(props) {
                 <div className="col-2">
                     <div className="card">
                         <ul id="online-list" className="list-group">
-                            <li className="list-group-item">Carl Benny</li>
-                            <li className="list-group-item">Benny Carl</li>
-                            <li className="list-group-item">Joe Doe</li>
-                            <li className="list-group-item">Doe John</li>
                         </ul>
                     </div>
                 </div>
