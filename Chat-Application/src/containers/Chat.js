@@ -43,6 +43,10 @@ export default function Chat(props) {
                 <div className="col-2">
                     <div className="card">
                         <ul id="online-list" className="list-group">
+                            <li className="list-group-item">Carl Benny</li>
+                            <li className="list-group-item">Benny Carl</li>
+                            <li className="list-group-item">Joe Doe</li>
+                            <li className="list-group-item">Doe John</li>
                         </ul>
                     </div>
                 </div>
