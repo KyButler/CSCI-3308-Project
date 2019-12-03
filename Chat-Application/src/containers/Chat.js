@@ -3,7 +3,6 @@ import { Button, Collapse, Card, ListGroup, Form } from 'react-bootstrap'
 import { Link } from "react-router-dom";
 import "./Chat.css";
 
-
 export default function Chat(props) {
     const [open, setOpen] = useState(false);
     const [channels, setChannels] = useState(null);
@@ -93,7 +92,7 @@ export default function Chat(props) {
                                 <ul id="messages-list" className="list-group">
                                     {/*load message list*/}
                                     {messages && messages.map(message => 
-                                        <ListGroup.Item key={`message_${message.id}`}> <h3>{message.sentBy.username}</h3><br></br>{message.content} </ListGroup.Item>
+                                        <ListGroup.Item key={`message_${message.id}`}> <h3>{message.sentBy.displayname}</h3><br></br>{message.content} </ListGroup.Item>
                                     )}
                                 </ul>
                             </div>

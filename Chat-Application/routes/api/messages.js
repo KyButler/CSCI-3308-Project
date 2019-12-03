@@ -5,7 +5,8 @@ router.post('/', async (req, res, next) => {
 /* take message and put it into the correct table. */
     try {
         const message = await Message.create({ ...req.body, sentById: req.user.id });
-        res.send(Message.findOne({ where: { id: message.id }, include: { model: User, as: 'sentBy', attributes: ['username'] } }));
+        const readBack = await Message.findOne({ where: { id: message.id }, include: { model: User, as: 'sentBy', attributes: ['displayname'] } });
+        res.send(readBack);
     }
     catch (e) {
         if (e instanceof ValidationError) {

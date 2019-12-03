@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:id/messages', async (req, res) => {
     //send over message list
-    res.send(await Message.findAll({ where: { channelId: req.params.id }, include: { model: User, as: 'sentBy', attributes: ['username'] } }));
+    res.send(await Message.findAll({ where: { channelId: req.params.id }, include: { model: User, as: 'sentBy', attributes: ['displayname'] } }));
 });
 
 module.exports = router;
