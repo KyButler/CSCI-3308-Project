@@ -1,5 +1,5 @@
 import { LinkContainer } from "react-router-bootstrap";
-import React, { useEffect, useState, Component } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Switch, Redirect, Route, useHistory } from "react-router-dom";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import "./App.css";
@@ -84,7 +84,7 @@ function App(props) {
                 <Route path="/" exact render={props => <Home {...props} user={user} />} />
                 <Route path="/login" exact render={props => user ? <Redirect to="/chat" /> : <Login {...props} setUser={setUser} />} />
                 <Route path="/signup" exact render={props => user ? <Redirect to="/chat" /> : <Signup {...props} setUser={setUser} />} />
-                <Route path="/chat" exact render={props => user ? <Chat {...props} /> : <Redirect to="/login" />} />
+                <Route path="/chat/:channelId?" render={props => user ? <Chat {...props} user={user}/> : <Redirect to="/login" />} />
                 <Route component={NotFound} />
             </Switch>
         </div>

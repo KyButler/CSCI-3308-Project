@@ -13,7 +13,7 @@ export default function Signup(props) {
 
     function validateForm() {
         // add database query to determine if the username already exists or not.
-        return password.length > 0 && username.length > 0 && confirmPassword.length > 0 && password == confirmPassword;
+        return password.length > 0 && username.length > 0 && confirmPassword.length > 0 && password === confirmPassword;
     }
 
     async function handleSubmit(event) {  
@@ -72,7 +72,7 @@ export default function Signup(props) {
                         type="password"
                         onChange={e => setConfirmPassword(e.target.value)}
                         value={confirmPassword}
-                        className={confirmPassword && (confirmPassword == password ? 'is-valid' : 'is-invalid')}
+                        className={confirmPassword && (confirmPassword === password ? 'is-valid' : 'is-invalid')}
                     />
                 </Form.Group>
                 <br />

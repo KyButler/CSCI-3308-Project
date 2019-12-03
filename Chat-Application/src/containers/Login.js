@@ -53,7 +53,7 @@ export default function Login(props) {
                 </Form.Group>
                 <Button block disabled={!validateForm()} type="submit">
                     Login
-        </Button>
+                </Button>
             </Form>
         </div>
     );

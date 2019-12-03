@@ -1,4 +1,3 @@
-const passport = require('passport');
 const router = require('express').Router();
 const { User, Sequelize: { ValidationError } } = require('../../models');
 
