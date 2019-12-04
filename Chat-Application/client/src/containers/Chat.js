@@ -92,7 +92,7 @@ export default function Chat(props) {
                                 <ul id="messages-list" className="list-group">
                                     {/*load message list*/}
                                     {messages && messages.map(message => 
-                                        <ListGroup.Item key={`message_${message.id}`}> <h3>{message.sentBy.displayname}</h3><br></br>{message.content} </ListGroup.Item>
+                                        <ListGroup.Item key={`message_${message.id}`}> <h4>{message.sentBy.displayname}</h4>{message.content} </ListGroup.Item>
                                     )}
                                 </ul>
                             </div>

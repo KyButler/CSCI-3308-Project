@@ -6,12 +6,17 @@ is being used when the .env file has "SECRET = $...", and this file can read
 that SECRET by calling process.env.SECRET. It's basically just a local variable
 hidden in a file.*/
 require('dotenv').config();
+const path = require('path');
+
+
 
 /* Includes the passport Library. Passport is a library build around user
 logging in and authentication. While there are many endpoints that this Library
 is built to use, the Chat-App simply uses it for password verification given a
 unique key. It requires express to be used. */
 const passport = require('./config/passport');
+
+
 
 /* Express is a web framework built for Node JS. It's being used in order to
 do req and res procedures, as well as run the groundwork for the passport
@@ -45,6 +50,9 @@ app.use(require('body-parser').json({limit: process.env.JSON_LIMIT || '8mb'}));
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Serve the static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 /* making a request to /api/auth will reference ./routes/api/auth. This means
 that if the browser attempts to make a call to the URL /api/auth, the auth.js
 code will run (more can be seen in ./routes/api/auth.js) */
@@ -52,6 +60,10 @@ app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/channels', require('./routes/api/channels'));
 app.use('/api/messages', require('./routes/api/messages'));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
 
 /* Places the port at the defined PORT in .env, or instead defaults to 7217.
 This port can probably be from 1->9999 given nothing else is running on that

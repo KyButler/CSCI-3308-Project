@@ -48,7 +48,7 @@ module.exports = {
     /* when in production, we're going to use a URL to access the db (most
   likely). This line accounts for that url, when we have it. It doesn't have
   a default yes, as we're not sure what that default may be.*/
-    url: process.env.DATABASE_URL,
+      use_env_variable: 'DATABASE_URL',
 
     /* Sequelize can be told not to log when run, so things like username and
     status and those will not show up in the console when this production .env

@@ -1,4 +1,4 @@
-import { LinkContainer } from "react-router-bootstrap";
+import { LinkContainer, Modal, Button } from "react-router-bootstrap";
 import React, { useEffect, useState } from "react";
 import { Link, Switch, Redirect, Route, useHistory } from "react-router-dom";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
@@ -34,6 +34,11 @@ function App(props) {
 
     const history = useHistory();
 
+    function handleChangeUsername() {
+        console.log("user wanted to change username");
+        
+    }
+
     async function handleLogout(event) {
         event.preventDefault();
         console.log("user clicked logout button");
@@ -63,9 +68,16 @@ function App(props) {
                         <Nav>
                             <NavDropdown alignRight title={<span><FontAwesomeIcon icon={faUserCircle} /> {user.displayname || user.username}</span>} id="basic-nav-dropdown">
 
+                                <NavDropdown.Item onClick={handleChangeUsername}>
+                                    Change Display Name
+                                </NavDropdown.Item>
+
+                                <NavDropdown.Divider/>
+
                                 <NavDropdown.Item onClick={handleLogout}>
                                     Logout
-              </NavDropdown.Item>
+                                </NavDropdown.Item>
+
 
                             </NavDropdown>
                         </Nav>) : (
