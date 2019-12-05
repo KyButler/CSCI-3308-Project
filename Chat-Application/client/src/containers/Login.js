@@ -27,6 +27,8 @@ export default function Login(props) {
         } else {
             // cry about it
             // update global user state (working on the easiest way to do this)
+            alert("Incorrect username or password, please try again.");
+            return false;
         }
     }
 
