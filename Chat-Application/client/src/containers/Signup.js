@@ -35,6 +35,8 @@ export default function Signup(props) {
         } else {
             // cry about it
             // update global user state (working on the easiest way to do this)
+            alert("The entered username is taken, please try again.");
+            return false;
         }
     }
 
