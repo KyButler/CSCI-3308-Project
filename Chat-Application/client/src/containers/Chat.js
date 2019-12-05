@@ -65,6 +65,7 @@ export default function Chat(props) {
             console.log("welp, the message actually sent. . . ")
             setMessages([...messages, await response.json()]);
             setUserInput("");
+
         } else {
             // cry about it
             // update global user state (working on the easiest way to do this)
@@ -72,54 +73,37 @@ export default function Chat(props) {
     }
 
     return (
-        <div className="container-fluid">
-            <div className="row">
-                <div className="col-2">
-                    <div className="card">
-                        <Button onClick={() => setOpen(!open)}>Channels</Button>
-                        <Collapse in={open}>
-                            <ListGroup>
-                                {/*load channel list*/}
-                                {channels && channels.map(channel => <ListGroup.Item key={`channel_${channel.id}`}> <Link to={`/chat/${channel.id}`}>{channel.name}</Link> </ListGroup.Item>)}
-                            </ListGroup>
-                        </Collapse>
-                    </div>
-                </div>
-                <div className="col-8">
+        <div className="Chat flex-grow-1" style={{ 'backgroundColor': 'lightgray', 'paddingTop': '15px'}}>
+            <div className="row h-100 flex-grow-1">
+                <div className="col-2 overflow-auto mh-100">
                     <Card>
-                        <Card.Body>
-                            <div className="overflow-auto">
-                                <ul id="messages-list" className="list-group">
-                                    {/*load message list*/}
-                                    {messages && messages.map(message => 
-                                        <ListGroup.Item key={`message_${message.id}`}> <h4>{message.sentBy.displayname}</h4>{message.content} </ListGroup.Item>
-                                    )}
-                                </ul>
-                            </div>
+                        <Card.Body className="text-white bg-info">
+                            {/*load channel list*/}
+                            {channels && channels.map(channel => <ListGroup.Item key={`channel_${channel.id}`}> <Link to={`/chat/${channel.id}`}>{channel.name}</Link> </ListGroup.Item>)}
                         </Card.Body>
-                        <Form onSubmit={handleSubmit}>
-                            <Form.Group>
-                                <Form.Control
-                                    type="text"
-                                    value={userInput}
-                                    onChange={e => setUserInput(e.target.value)}
-                                />
-                            </Form.Group>
-                        </Form>
-                        
-
                     </Card>
                 </div>
-                <div className="col-2">
-                    <div className="card">
-                        <ul id="online-list" className="list-group">
-                            <li className="list-group-item">Carl Benny</li>
-                            <li className="list-group-item">Benny Carl</li>
-                            <li className="list-group-item">Joe Doe</li>
-                            <li className="list-group-item">Doe John</li>
-                        </ul>
-                    </div>
+                <div className="col-10 overflow-auto mh-100">
+                    <Card border="light">
+                        <Card.Body>
+                            <ListGroup id="messages-list" className="list-group">
+                                {/*load message list*/}
+                                {messages && messages.map(message => 
+                                    <ListGroup.Item key={`message_${message.id}`}> <h4>{message.sentBy.displayname}</h4>{message.content} </ListGroup.Item>
+                                )}
+                            </ListGroup>
+                        </Card.Body>
+                    </Card>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group>
+                            <Form.Control
+                                type="text"
+                                value={userInput}
+                                onChange={e => setUserInput(e.target.value)}
+                            />
+                        </Form.Group>
+                    </Form>
                 </div>
             </div>
-        </div>);
+        </div>);//working
 };

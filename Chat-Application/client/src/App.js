@@ -1,5 +1,5 @@
 import { LinkContainer, Modal, Button } from "react-router-bootstrap";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, } from "react";
 import { Link, Switch, Redirect, Route, useHistory } from "react-router-dom";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import "./App.css";
@@ -14,6 +14,7 @@ import { faUserCircle } from '@fortawesome/free-regular-svg-icons'
 function App(props) {
     const [user, setUser] = useState(null);
     const [userChecked, setUserChecked] = useState(false);
+    const [modalShow, setModalShow] = React.useState(false);
 
     useEffect(() => {
         const fetchAuth = async () => {
@@ -34,9 +35,32 @@ function App(props) {
 
     const history = useHistory();
 
-    function handleChangeUsername() {
-        console.log("user wanted to change username");
-        
+    function MyVerticallyCenteredModal(props) {
+        return (
+            <Modal
+                {...props}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        Modal heading
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <h4>Centered Modal</h4>
+                    <p>
+                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+                        dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+                        consectetur ac, vestibulum at eros.
+        </p>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={props.onHide}>Close</Button>
+                </Modal.Footer>
+            </Modal>
+        );
     }
 
     async function handleLogout(event) {
@@ -63,13 +87,14 @@ function App(props) {
                 </Navbar.Brand>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
-
                     {user ? (
+
                         <Nav>
                             <NavDropdown alignRight title={<span><FontAwesomeIcon icon={faUserCircle} /> {user.displayname || user.username}</span>} id="basic-nav-dropdown">
 
-                                <NavDropdown.Item onClick={handleChangeUsername}>
+                                <NavDropdown.Item onClick={() => setModalShow(true)}>
                                     Change Display Name
+
                                 </NavDropdown.Item>
 
                                 <NavDropdown.Divider/>
@@ -78,20 +103,20 @@ function App(props) {
                                     Logout
                                 </NavDropdown.Item>
 
-
                             </NavDropdown>
                         </Nav>) : (
-                            <Nav>
-                                <LinkContainer to="/signup">
-                                    <Nav.Link>Signup</Nav.Link>
-                                </LinkContainer>
-                                <LinkContainer to="/login">
-                                    <Nav.Link>Login</Nav.Link>
-                                </LinkContainer>
-                            </Nav>
+                        <Nav>
+                            <LinkContainer to="/signup">
+                                <Nav.Link>Signup</Nav.Link>
+                            </LinkContainer>
+                            <LinkContainer to="/login">
+                                <Nav.Link>Login</Nav.Link>
+                            </LinkContainer>
+                            </Nav>                            
                         )}
                 </Navbar.Collapse>
             </Navbar>
+
             <Switch>
                 <Route path="/" exact render={props => <Home {...props} user={user} />} />
                 <Route path="/login" exact render={props => user ? <Redirect to="/chat" /> : <Login {...props} setUser={setUser} />} />
