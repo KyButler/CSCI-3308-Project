@@ -5,6 +5,14 @@ import "./Chat.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import { sortBy } from 'lodash'
+import { animateScroll } from "react-scroll";
+
+function scrollToBottom() {
+    animateScroll.scrollToBottom({
+        containerId: "messages"
+    });
+}
+
 
 
 export default function Chat(props) {
@@ -13,10 +21,15 @@ export default function Chat(props) {
     const [messages, setMessages] = useState(null);
     const [userInput, setUserInput] = useState("");
     const [newChannel, setNewChannel] = useState("");
+    const [intervalId, setIntervalId] = useState(null);
+    const [channelIntervalId, setChannelIntervalId] = useState(null);
 
     useEffect(() => { document.title = 'Chat'; }, []);
 
     useEffect(() => {
+        if (channelIntervalId) {
+            clearInterval(channelIntervalId);
+        }
         const fetchChannels = async () => {
             const response = await fetch('/api/channels', {
                 method: 'get',
@@ -30,9 +43,14 @@ export default function Chat(props) {
             }
         }
         fetchChannels();
+        setChannelIntervalId(setInterval(fetchChannels, 5000));
     }, []);
 
     useEffect(() => {
+        if (intervalId) {
+            clearInterval(intervalId);
+        }
+        let firstRun = true;
         const fetchMessages = async () => {
             if (!props.match.params.channelId) {
                 return;
@@ -46,9 +64,14 @@ export default function Chat(props) {
                 if (text) {
                     setMessages(JSON.parse(text));
                 }
+                if (firstRun){
+                    scrollToBottom();
+                    firstRun = false;
+                }
             }
         }
         fetchMessages();
+        setIntervalId(setInterval(fetchMessages, 2000));
     }, [props.match.params.channelId]);
 
     async function handleSubmit(e) {
@@ -70,8 +93,9 @@ export default function Chat(props) {
             console.log("welp, the message actually sent. . . ")
             setMessages([...messages, await response.json()]);
             setUserInput("");
-
-        } else {
+            scrollToBottom();
+        }
+        else {
             // cry about it
             // update global user state (working on the easiest way to do this)
         }
@@ -135,13 +159,13 @@ export default function Chat(props) {
                                 </div>
                             </Collapse>
                             {/*load channel list*/}
-                            {channels && channels.map(channel => <ListGroup.Item key={`channel_${channel.id}`}> <Link to={`/chat/${channel.id}`}>{channel.name}</Link> </ListGroup.Item>)}
+                            {channels && channels.map(channel => <ListGroup.Item key={`channel_${channel.id}`} > <Link to={`/chat/${channel.id}`}>{channel.name}</Link> </ListGroup.Item>)}
                         </ListGroup>
                     </Card>
                 </div>
                 <div className="col-10 h-100">
                     <Card border="light" className="h-100 d-flex">
-                        <Card.Body className="overflow-auto flex-grow-1">
+                        <Card.Body className="overflow-auto flex-grow-1" id="messages">
                             <ListGroup id="messages-list">
                                 {/*load message list*/}
                                 {messages && messages.map(message =>
