@@ -1,5 +1,5 @@
-import { LinkContainer, Modal, Button } from "react-router-bootstrap";
-import React, { useEffect, useState } from "react";
+import { LinkContainer} from "react-router-bootstrap";
+import React, { useEffect, useState, } from "react";
 import { Link, Switch, Redirect, Route, useHistory } from "react-router-dom";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import "./App.css";
@@ -8,12 +8,14 @@ import Home from "./containers/Home";
 import NotFound from "./containers/NotFound";
 import Signup from "./containers/Signup";
 import Chat from "./containers/Chat";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserCircle } from '@fortawesome/free-regular-svg-icons'
+import ChangeDisplayNameModal from './containers/ChangeDisplayNameModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-regular-svg-icons';
 
 function App(props) {
     const [user, setUser] = useState(null);
     const [userChecked, setUserChecked] = useState(false);
+    const [modalShow, setModalShow] = React.useState(false);
 
     useEffect(() => {
         const fetchAuth = async () => {
@@ -33,11 +35,6 @@ function App(props) {
     }, []);
 
     const history = useHistory();
-
-    function handleChangeUsername() {
-        console.log("user wanted to change username");
-        
-    }
 
     async function handleLogout(event) {
         event.preventDefault();
@@ -63,12 +60,12 @@ function App(props) {
                 </Navbar.Brand>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
-
                     {user ? (
+
                         <Nav>
                             <NavDropdown alignRight title={<span><FontAwesomeIcon icon={faUserCircle} /> {user.displayname || user.username}</span>} id="basic-nav-dropdown">
 
-                                <NavDropdown.Item onClick={handleChangeUsername}>
+                                <NavDropdown.Item onClick={() => setModalShow(true)}>
                                     Change Display Name
                                 </NavDropdown.Item>
 
@@ -78,27 +75,33 @@ function App(props) {
                                     Logout
                                 </NavDropdown.Item>
 
-
                             </NavDropdown>
+                            <ChangeDisplayNameModal
+                                show={modalShow}
+                                onHide={() => setModalShow(false)}
+                                setUser={setUser}
+                            />  
                         </Nav>) : (
-                            <Nav>
-                                <LinkContainer to="/signup">
-                                    <Nav.Link>Signup</Nav.Link>
-                                </LinkContainer>
-                                <LinkContainer to="/login">
-                                    <Nav.Link>Login</Nav.Link>
-                                </LinkContainer>
-                            </Nav>
+                        <Nav>
+                            <LinkContainer to="/signup">
+                                <Nav.Link>Signup</Nav.Link>
+                            </LinkContainer>
+                            <LinkContainer to="/login">
+                                <Nav.Link>Login</Nav.Link>
+                            </LinkContainer>
+                            </Nav>                            
                         )}
                 </Navbar.Collapse>
             </Navbar>
-            <Switch>
-                <Route path="/" exact render={props => <Home {...props} user={user} />} />
-                <Route path="/login" exact render={props => user ? <Redirect to="/chat" /> : <Login {...props} setUser={setUser} />} />
-                <Route path="/signup" exact render={props => user ? <Redirect to="/chat" /> : <Signup {...props} setUser={setUser} />} />
-                <Route path="/chat/:channelId?" render={props => user ? <Chat {...props} user={user}/> : <Redirect to="/login" />} />
-                <Route component={NotFound} />
-            </Switch>
+            <div className="content">
+                <Switch>
+                    <Route path="/" exact render={props => <Home {...props} user={user} />} />
+                    <Route path="/login" exact render={props => user ? <Redirect to="/chat" /> : <Login {...props} setUser={setUser} />} />
+                    <Route path="/signup" exact render={props => user ? <Redirect to="/chat" /> : <Signup {...props} setUser={setUser} />} />
+                    <Route path="/chat/:channelId?" render={props => user ? <Chat {...props} user={user} /> : <Redirect to="/login" />} />
+                    <Route component={NotFound} />
+                </Switch>
+            </div>
         </div>
     ) : null;
 }
