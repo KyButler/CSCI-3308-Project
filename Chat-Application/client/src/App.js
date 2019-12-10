@@ -61,7 +61,6 @@ function App(props) {
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
                     {user ? (
-
                         <Nav>
                             <NavDropdown alignRight title={<span><FontAwesomeIcon icon={faUserCircle} /> {user.displayname || user.username}</span>} id="basic-nav-dropdown">
 
