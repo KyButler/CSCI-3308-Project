@@ -26,8 +26,9 @@ Application Name - Chat Application
 * Must have NPM and Postgres installed
   * Download repository
   * Run `npm install` in root
+  * Run `npm install` in client
   * Create a postgres DB called `chatapp`
-  * Run `npx sequelize db:migrate` or NPM, NPX works for me) 
+  * Run `npx sequelize db:migrate` (or NPM, NPX works for me) 
   * Make a file called `.env` (many things go here, but at least:)
 `SECRET=e879742b62b6b3020da1bce7ea4abb06051541462afa92348cccbae87cac693740c64094031783a74c06eec9c35e1cbeb520c1f9327bda1cbfe716ff50620269`
 `PG_PASSWORD=insertpostgrespasswordhere`
