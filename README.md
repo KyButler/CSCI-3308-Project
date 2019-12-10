@@ -5,6 +5,8 @@ Team Name - Rocket Scientists
 Team Members -  Kyran Butler, Jia Jian, Qiuyang Fu, Tahmina Ahmad, Justin Chen, Sahil Shah
 Application Name - Chat Application
 
+![Image of Chat App](/logo.png)
+
 ### Repo Organization
 
 * Chat-Application
